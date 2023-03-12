@@ -1,0 +1,46 @@
+
+Design and Reasoning
+
+
+1. Given the above high level requirements, what are some of the questions you would ask each of following team members to understand this feature better?
+
+Product owner
+-What licence do we have on this product?
+-How many users does our licence accomodate?
+-Is the Licence enough for all employees who will be using this system and if not enough, how do we upgrade to accomodate new users?
+-Do we need all users to have access and what kind of access?
+-What do we want to capture as user details?
+-What is the primary ID to be used and what will be used for searching a user?
+-How will users be removed, what is it that need to be checked for a user to be eligible to be removed?
+-what should be editable?
+-Who need to have access to remove users and is there a process for such request?
+-How will we manage data retention?
+
+UX designer
+-How many forms will we have?
+-How will the home screen look like and what will be on the home screen?
+-Will an Administrator and any normal user have the same user interface?
+-How will the interface handle "Error handling and exceptions"?
+
+Technical Architect
+-How many tables will we have and how will they be linked
+-Will we be able to see inactive users and when last did they login?
+-How will we handle backups?
+-Will there be Primary and DR for the DB and how will they be replicated?
+-How will we know of active and inactive users, let say using a period of 6 months?
+
+2. In order to delight the user with these features, how would you want it to work?
+
+-Have a process about adding users which once a request for a new user to be added is approved, Administrators then add the user
+-All required information to be provided and added 
+-Once a user is added, to then login to test if they able to login and for every logins, they must be captured on a login/activity table for auditing purposes
+-Administrators to have a different view with the users as theirs should have options to add. update and remove users, while users have option to update relevant information, not all information.
+-Administrators to have a view of available licences, active users and inactive users so that a follow up can be made to find out if users still need to have access
+
+3. Based on your response to the previous question what would you automate in the testing of this feature?
+
+-Automated Login for an existing user
+-Automated search and update after the login have passed, if new value is found on 2nd search after an update was done, then Pass
+-Automated Admin delete and search, if no results returned then pass, if results returned then Fail
+-Automated login for a non existing user
+-Automated Comparison for number of licences to number of active users and they should match in numbers, if no match then an inactive user exists utilising a licence
